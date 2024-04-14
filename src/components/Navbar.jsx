@@ -43,13 +43,13 @@ const Navbar = () => {
 
     return (
         <nav className="z-50">
-            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-6 py-4  fixed w-full backdrop-blur-sm bg-white/50">
+            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-10 py-4  fixed w-full backdrop-blur-sm bg-white/50">
                 <div className="flex items-center flex-1">
                     <span className="text-3xl font-bold "> Farm2Market</span>
                 </div>
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
                     <div className="flex-10">
-                        <ul className="flex gap-8 mr-16 text-[20px]">
+                        <ul className="flex gap-8  text-[20px]">
                             <Link to={"admin_hotels"}   >
                                 <li className="">Admin</li>
                             </Link>
