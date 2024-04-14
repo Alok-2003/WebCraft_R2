@@ -34,6 +34,7 @@ export const FirebaseProvider = (props) => {
     const [user, setUser] = useState(null);
     const [admin, setadmin] = useState(null);
     const navigate = useNavigate();
+    console.log(user)
 
     // console.log(user)
 
@@ -50,17 +51,26 @@ export const FirebaseProvider = (props) => {
         // Sign out user
         auth.signOut().then(() => {
             setUser(null);
-            navigate.push("/login");
+            navigate("/login");
         }).catch((error) => {
             console.error('Error signing out:', error);
         });
     };
 
     const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
+
+    const getUserDetails = () => {
+        if (isLoggedIn && user) {
+            const { displayName, email, photoURL } = user;
+            return { displayName, email, photoURL };
+        }
+        return null;
+    };
     
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
-        signinWithGoogle
+        signinWithGoogle,
+        getUserDetails
     }} > {props.children} </FirebaseContext.Provider>
 };

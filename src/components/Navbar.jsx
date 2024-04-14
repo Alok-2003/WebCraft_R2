@@ -1,18 +1,22 @@
 // Navbar.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { FiAlignRight } from "react-icons/fi";
 import { useFirebase } from '../context/Firebase';
+
 
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
     const firebase = useFirebase();
+    const { isLoggedIn, getUserDetails } = useFirebase();
+    const userDetails = getUserDetails();
+    const navigate = useNavigate();
     const handleLogout = () => {
         firebase.signOut();
-        window.location.href = '/login'; // Redirect to login page after logout
+        // navigate("/login"); // Redirect to login page after logout
     };
     console.log(firebase)
 
@@ -26,7 +30,7 @@ const Navbar = () => {
                     <li className="my-3 py-1 border-b border-slate-800 hover:rounded">Profile</li>
                 </Link>
                 {firebase.isLoggedIn ? (
-                    <Link onClick={handleLogout} >
+                    <Link to='/login' onClick={handleLogout} >
                         <li className="" >Logout</li>
                     </Link>
                 ) : (
@@ -41,34 +45,43 @@ const Navbar = () => {
 
     return (
         <nav className="z-50">
-            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-10 py-4  fixed w-full backdrop-blur-sm bg-white/50">
+            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-12 py-4  fixed w-full backdrop-blur-sm bg-white/50">
                 <div className="flex items-center flex-1">
+                    <span className="text-2xl"> Hi, {userDetails?.displayName || 'Guest'} </span>
+
+                </div>
+                <div className="flex items-center ">
                     <span className="text-3xl font-bold "> Farm2Market</span>
                 </div>
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
                     <div className="flex-10">
-                        <ul className="flex gap-8  text-[20px]">
-                            <Link to={"admin_hotels"}   >
+                        <ul className="flex gap-8 items-center justify-center text-[20px]">
+                            <Link to={"admin_hotels"}>
                                 <li className="">Admin</li>
                             </Link>
 
                             {firebase.isLoggedIn ? (
                                 <>
-                                    <Link   >
-                                        <li className="">Profile</li>
-                                    </Link >
-                                    <Link onClick={handleLogout} >
-                                        <li className="" >Logout</li>
+                                    <Link>
+                                        <li>
+                                            <img
+                                                src={userDetails.photoURL}
+                                                alt="User Profile"
+                                                className="rounded-full w-12 h-12 object-cover"
+                                            />
+                                        </li>
+                                    </Link>
+                                    <Link to='/login' onClick={handleLogout}>
+                                        <li className="">Logout</li>
                                     </Link>
                                 </>
-
                             ) : (
                                 <Link to="/login">
                                     <li className="">Login</li>
                                 </Link>
                             )}
-
                         </ul>
+
                     </div>
                 </div>
                 <div>{click && content}</div>
