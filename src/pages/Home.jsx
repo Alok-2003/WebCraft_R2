@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Carousel from './components/Carousel';
-import Calendar from './components/Calender';
+import Carousel from '../components/Carousel';
+import Calendar from '../components/Calender';
 
 const Home = () => {
 

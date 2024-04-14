@@ -83,7 +83,6 @@ const Calendar = ({ events }) => {
                 </>
             )}
 
-
         </div>
     );
 };
