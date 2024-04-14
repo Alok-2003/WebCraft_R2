@@ -20,13 +20,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBexuAdEEIMiSwal1I4Cqdz3z7t96fLxA",
-  authDomain: "app-640a6.firebaseapp.com",
-  databaseURL: "https://app-640a6-default-rtdb.firebaseio.com",
-  projectId: "app-640a6",
-  storageBucket: "app-640a6.appspot.com",
-  messagingSenderId: "126292029866",
-  appId: "1:126292029866:web:c6b64211cdf7f1525a3bd3"
+  apiKey: "AIzaSyDrPTQpcnoCAh97xr-Fz3iHdj2aTf16yH8",
+  authDomain: "webcraft-b6ba7.firebaseapp.com",
+  projectId: "webcraft-b6ba7",
+  storageBucket: "webcraft-b6ba7.appspot.com",
+  messagingSenderId: "443689788697",
+  appId: "1:443689788697:web:13a503799d417b39d2d188"
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

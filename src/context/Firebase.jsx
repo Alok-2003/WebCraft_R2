@@ -3,10 +3,12 @@ import { initializeApp } from "firebase/app";
 import {
     getAuth,
     onAuthStateChanged,
-    signOut
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, collection, addDoc, getDocs,getDoc ,doc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -16,14 +18,13 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const FirebaseContext = createContext(null);
 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDmUIcm4kPoZF8YI307wzivjSWY3-mYuHk",
-    authDomain: "hotel-60204.firebaseapp.com",
-    projectId: "hotel-60204",
-    storageBucket: "hotel-60204.appspot.com",
-    messagingSenderId: "419924901635",
-    appId: "1:419924901635:web:25316be4232420aa62b336",
-    measurementId: "G-P1JCSDB7FD",
+export const firebaseConfig = {
+    apiKey: "AIzaSyDrPTQpcnoCAh97xr-Fz3iHdj2aTf16yH8",
+    authDomain: "webcraft-b6ba7.firebaseapp.com",
+    projectId: "webcraft-b6ba7",
+    storageBucket: "webcraft-b6ba7.appspot.com",
+    messagingSenderId: "443689788697",
+    appId: "1:443689788697:web:13a503799d417b39d2d188"
 };
 
 export const useFirebase = () => useContext(FirebaseContext); // Context hook ready
@@ -31,6 +32,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app);
+const googleProvider = new GoogleAuthProvider();
 
 
 
@@ -60,7 +62,7 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    const AddNewHotel = async (id,name, location, pincode, contact, email, event,Strength, meal, images) => {
+    const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images) => {
         const imageUrls = [];
         // Loop through each selected image
         for (const image of images) {
@@ -69,7 +71,7 @@ export const FirebaseProvider = (props) => {
             imageUrls.push(uploadResult.ref.fullPath);
         }
         return await addDoc(collection(firestore, "Hotels"), {
-            id, name, location, pincode, contact, email, event,Strength, meal,
+            id, name, location, pincode, contact, email, event, Strength, meal,
             imageUrls,
             CreatorContact: user.phoneNumber,
         });
@@ -99,8 +101,8 @@ export const FirebaseProvider = (props) => {
 
     //     return imageURLs;
     // };
-    const getImageURL = (path) =>{
-        return getDownloadURL(ref(storage,path));
+    const getImageURL = (path) => {
+        return getDownloadURL(ref(storage, path));
     }
 
     const getHotelById = async (hotelId) => {
@@ -123,8 +125,11 @@ export const FirebaseProvider = (props) => {
             throw error; // Throw the error for handling in the calling code
         }
     };
-    
-    
+
+    const signUpWithGoogle = () => {
+        signInWithPopup(auth, googleProvider)
+    }
+
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
@@ -133,6 +138,7 @@ export const FirebaseProvider = (props) => {
         getImageURL,
         CreateNewProfile,
         listOfClient,
-        getHotelById
+        getHotelById,
+        signUpWithGoogle
     }} > {props.children} </FirebaseContext.Provider>
 };
