@@ -23,7 +23,7 @@ const Navbar = () => {
     const content = (
         <div className="lg:hidden block absolute top-16 w-full left-0 right-0 backdrop-blur-sm bg-white/50">
             <ul className="text-centre text-2xl font-bold px-8 py-0">
-                <Link to={"hotels"} spy={true} smooth={true} >
+                <Link to={"/admin_create"} spy={true} smooth={true} >
                     <li className="my-3 py-1 border-b border-slate-800 hover:rounded">Admin</li>
                 </Link>
                 <Link to="" spy={true} smooth={true} >
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
                     <div className="flex-10">
                         <ul className="flex gap-8 items-center justify-center text-[20px]">
-                            <Link to={"admin_hotels"}>
+                            <Link to={"admin_create"}>
                                 <li className="">Admin</li>
                             </Link>
 

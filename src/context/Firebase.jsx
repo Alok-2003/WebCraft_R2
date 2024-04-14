@@ -66,12 +66,12 @@ export const FirebaseProvider = (props) => {
         }
         return null;
     };
-    const AddNewProduct = async (is,name , price, cover) => {
+    const AddNewProduct = async (id,name , price, cover) => {
         const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
         const uploadResult = await uploadBytes(imageRef, cover);
-        return await addDoc(collection(firestore, "books"), {
+        return await addDoc(collection(firestore, "Product"), {
             name,
-            is,
+            id,
             price,
             imageURL: uploadResult.ref.fullPath,
             userID: user.uid,
@@ -80,12 +80,15 @@ export const FirebaseProvider = (props) => {
             photoURL: user.photoURL,
         });
     };
-    const AddNewMachinery = async (is,name , cover) => {
+    const listAllProduct = () => {
+        return getDocs(collection(firestore, "Product"))
+    };
+    const AddNewService = async (id,name, cover) => {
         const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
-        const uploadResult = await uploadBytes(imageRef, cover);
+        const uploadResult = await uploadBytes(imageRef, Service);
         return await addDoc(collection(firestore, "books"), {
             name,
-            is,
+            id,
             imageURL: uploadResult.ref.fullPath,
             userID: user.uid,
             userEmail: user.email,
@@ -100,6 +103,6 @@ export const FirebaseProvider = (props) => {
         signinWithGoogle,
         getUserDetails,
         AddNewProduct,
-        AddNewMachinery
+        AddNewService
     }} > {props.children} </FirebaseContext.Provider>
 };
