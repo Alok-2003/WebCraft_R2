@@ -74,7 +74,7 @@ const Calendar = ({ events }) => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
-                            <h2 className="text-3xl font-bold">Event</h2>
+                            <h2 className="text-3xl font-bold">Event:</h2>
                             <h3 className="text-2xl font-semibold my-2">{clickedEvent.eventName}</h3>
                             <p className="text-lg text-gray-600">Date: {clickedEvent.date}</p>
                             {/* Add additional event details here */}
