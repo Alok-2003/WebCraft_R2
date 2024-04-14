@@ -45,12 +45,12 @@ const Navbar = () => {
 
     return (
         <nav className="z-50">
-            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-12 py-4  fixed w-full backdrop-blur-sm bg-white/50">
-                <div className="flex items-center flex-1">
-                    <span className="text-2xl"> Hi, {userDetails?.displayName || 'Guest'} </span>
+            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 md:px-12 px-4 py-4  fixed w-full backdrop-blur-sm bg-white/50">
+                <div className="flex items-center md:flex-1 flex-none">
+                    <span className="md:text-2xl text-sm"> Hi, {userDetails?.displayName || 'Guest'} </span>
 
                 </div>
-                <div className="flex items-center ">
+                <div className="flex items-center md:flex-none ">
                     <span className="text-3xl font-bold "> Farm2Market</span>
                 </div>
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
