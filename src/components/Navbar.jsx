@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <nav className="z-50">
-            <div className="font-[gilroy] h-16 flex justify-between z-50 text-black lg:py-5 px-6 py-4  fixed w-full backdrop-blur-sm bg-white/50">
+            <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-6 py-4  fixed w-full backdrop-blur-sm bg-white/50">
                 <div className="flex items-center flex-1">
                     <span className="text-3xl font-bold "> Farm2Market</span>
                 </div>
