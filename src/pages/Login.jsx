@@ -1,22 +1,17 @@
-import React from 'react'
-import { useFirebase,firebaseConfig } from '../context/Firebase';
-import { initializeApp } from "firebase/app";
+import React, { useEffect, useState } from 'react'
+import { useFirebase } from '../context/Firebase';
+import { useNavigate } from 'react-router-dom';
 
-import { 
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup
-} from "firebase/auth";
 
 const Login = () => {
-const app = initializeApp(firebaseConfig);
+  const firebase = useFirebase();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (firebase.isLoggedIn) {
+      navigate("/");
+    }
+  }, [firebase, navigate]);
 
-  const googleProvider = new GoogleAuthProvider();
-  const auth = getAuth(app);
-
-  const signUpWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-  }
   return (
     <>
       <div className="font-['gilroy'] flex justify-center items-center h-[100%] bg-[url('https://img.freepik.com/premium-photo/farmer-hold-full-basket-vegetables_1031240-10968.jpg?w=826')] bg-cover">
@@ -26,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 
               <h1 className="text-5xl font-bold text-center">Login</h1>
 
-              <button onClick={signUpWithGoogle} className="bg-white text-black border border-gray-300 rounded-md p-1 flex items-center justify-center text-xl my-2">
+              <button onClick={firebase.signinWithGoogle} className="bg-white text-black border border-gray-300 rounded-md p-1 flex items-center justify-center text-xl my-2">
                 <div className="flex items-center">
                   <img src="public/pngwing.com.png" alt="Google Logo" className="w-12 h-12 mr-2" />
                   Login in with Google

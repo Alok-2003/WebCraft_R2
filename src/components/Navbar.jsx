@@ -3,14 +3,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import { FiAlignRight } from "react-icons/fi";
+import { useFirebase } from '../context/Firebase';
 
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
-
     const handleClick = () => setClick(!click);
-
-   
+    const firebase = useFirebase();
+    const handleLogout = () => {
+        firebase.signOut();
+        window.location.href = '/login'; // Redirect to login page after logout
+    };
+    console.log(firebase)
 
     const content = (
         <div className="lg:hidden block absolute top-16 w-full left-0 right-0 backdrop-blur-sm bg-white/50">
@@ -19,14 +23,23 @@ const Navbar = () => {
                     <li className="my-3 py-1 border-b border-slate-800 hover:rounded">Admin</li>
                 </Link>
                 <Link to="" spy={true} smooth={true} >
-                    <li className="my-3 py-1 border-b border-slate-800 hover:rounded">About</li>
+                    <li className="my-3 py-1 border-b border-slate-800 hover:rounded">Profile</li>
                 </Link>
-               
+                {firebase.isLoggedIn ? (
+                    <Link onClick={handleLogout} >
+                        <li className="" >Logout</li>
+                    </Link>
+                ) : (
+                    <Link to="/login">
+                        <li className="">Login</li>
+                    </Link>
+                )}
+
             </ul >
         </div>
     );
 
-   
+
 
     return (
         <nav className="z-50">
@@ -40,10 +53,23 @@ const Navbar = () => {
                             <Link to={"admin_hotels"}   >
                                 <li className="">Admin</li>
                             </Link>
-                            <Link   >
-                                <li className="">About</li>
-                            </Link >
-                            
+
+                            {firebase.isLoggedIn ? (
+                                <>
+                                    <Link   >
+                                        <li className="">Profile</li>
+                                    </Link >
+                                    <Link onClick={handleLogout} >
+                                        <li className="" >Logout</li>
+                                    </Link>
+                                </>
+
+                            ) : (
+                                <Link to="/login">
+                                    <li className="">Login</li>
+                                </Link>
+                            )}
+
                         </ul>
                     </div>
                 </div>
