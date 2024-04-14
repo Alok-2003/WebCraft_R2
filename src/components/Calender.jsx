@@ -39,13 +39,13 @@ const Calendar = ({ events }) => {
 
 
     return (
-        <div className="calendar border-8 border-green-500/50 rounded-2xl p-2">
-            <h2 className="text-xl font-semibold mb-4">
+        <div className="calendar border-8 border-green-500/50 rounded-2xl p-2  md:mx-14">
+            <h2 className="text-2xl font-semibold mb-4 md:mx-2">
                 {currentDate.toLocaleDateString('default', { month: 'long', year: 'numeric' })}
             </h2>
             <div className="grid grid-cols-7 gap-2">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                    <div key={day} className="text-center font-semibold">{day}</div>
+                    <div key={day} className="text-center md:text-2xl font-semibold">{day}</div>
                 ))}
                 {[...Array(getFirstDayOfWeek(currentMonth, currentYear)).keys()].map((_, index) => (
                     <div key={`empty-${index}`}></div>
@@ -53,7 +53,7 @@ const Calendar = ({ events }) => {
                 {generateDaysArray().map((day) => (
                     <div
                         key={day}
-                        className={`cursor-pointer text-center p-2 rounded-full ${events.some((event) => {
+                        className={`cursor-pointer text-center p-2 text-xl rounded-full ${events.some((event) => {
                             const eventDate = new Date(event.date);
                             return eventDate.getDate() === day && eventDate.getMonth() === currentMonth;
                         }) ? 'bg-blue-500 text-white' : ''

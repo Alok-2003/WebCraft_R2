@@ -66,9 +66,9 @@ const Home = () => {
       </div>
 
       <hr />
-      <div className='flex justify-between mx-3 mt-2 items-center' >
-        <h1 className='text-2xl font-bold'>Featured Products</h1>
-        <h1 className='text-green-600'>See all</h1>
+      <div className='flex justify-between mx-3 mt-2 md:mx-14  items-center' >
+        <h1 className='text-2xl font-bold md:text-3xl'>Featured Products</h1>
+        <h1 className='text-green-600 md:text-xl'>See all</h1>
       </div>
       <div className='flex justify-center mb-4'>
         <div className="mt-0 mx-2 grid grid-cols-2 gap-3  ">
@@ -105,9 +105,9 @@ const Home = () => {
       </div>
       {/* Services */}
       <hr />
-      <div className='flex justify-between mx-3 mt-2 items-center' >
-        <h1 className='text-2xl font-bold'>Services Avaliable</h1>
-        <h1 className='text-green-600'>See all</h1>
+      <div className='flex justify-between mx-3 mt-2 md:mx-14  items-center' >
+        <h1 className='text-2xl font-bold  md:text-3xl'>Services Avaliable</h1>
+        <h1 className='text-green-600 md:text-xl'>See all</h1>
       </div>
       <div className='flex justify-center mb-4'>
         <div className="mt-0 mx-2 grid grid-cols-2 gap-3  ">
@@ -121,8 +121,8 @@ const Home = () => {
       </div>
 <hr />
       <div className='mt-2 mx-4'>
-        <div className='flex justify-between  my-2 items-center' >
-          <h1 className='text-2xl font-bold'>Upcoming Event</h1>
+        <div className='flex justify-between  my-2  md:mx-14 items-center' >
+          <h1 className='text-2xl font-bold md:text-3xl md:mb-2'>Upcoming Event</h1>
         </div>
         <Calendar events={events} />
       </div>
