@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
 import Carousel from './components/Carousel';
+import Calendar from './components/Calender';
+
 const Home = () => {
 
   const slides = [
@@ -27,6 +28,12 @@ const Home = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const events = [
+    { date: '2024-04-15', eventName: 'Event 1' },
+    { date: '2024-04-20', eventName: 'Event 2' },
+    // Add more events as needed
+  ];
 
   return (
     <div className='py-16 bg- '>
@@ -55,6 +62,68 @@ const Home = () => {
           )}
         </div>
       </div>
+
+
+      <div className='flex justify-between mx-3 mt-2 items-center' >
+        <h1 className='text-2xl font-bold'>Featured Products</h1>
+        <h1 className='text-green-600'>See all</h1>
+      </div>
+      <div className='flex justify-center'>
+        <div className="mt-0 mx-2 grid grid-cols-2 gap-3  ">
+          <div className="w-44 rounded-2xl overflow-hidden shadow-md bg-white p-2 ">
+            <img className="h-40 w-44 rounded-2xl" src="https://img.freepik.com/free-photo/wheat-grains-bowl-wheat-popcorn-bowl-wheat-seed-rustic_114579-1319.jpg?t=st=1713081880~exp=1713085480~hmac=3b2cc3b4dc937ac048008d865e2525c15eb40af96fbdb186cb99a1760851afb7&w=360" alt="Rice Seeds" />
+            <div className="flex justify-between ">
+              <div className="px-2 py-2">
+                <div className="font-bold text-md ">Wheat</div>
+                <p className="text-green-700 text-base">$15/kg</p>
+              </div>
+              <div className="px-4 mt-3">
+                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="w-44 rounded-2xl overflow-hidden shadow-xl bg-white p-2 ">
+            <img className="h-40 w-44 rounded-2xl " src="https://img.freepik.com/free-photo/wheat-grains-bowl-wheat-popcorn-bowl-wheat-seed-rustic_114579-1319.jpg?t=st=1713081880~exp=1713085480~hmac=3b2cc3b4dc937ac048008d865e2525c15eb40af96fbdb186cb99a1760851afb7&w=360" alt="Rice Seeds" />
+            <div className="flex justify-between ">
+              <div className="px-2 py-2">
+                <div className="font-bold text-md ">Wheat</div>
+                <p className="text-green-700 text-base">$15/kg</p>
+              </div>
+              <div className="px-4 mt-3">
+                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {/* Services */}
+      <div className='flex justify-between mx-3 mt-2 items-center' >
+        <h1 className='text-2xl font-bold'>Services Avaliable</h1>
+        <h1 className='text-green-600'>See all</h1>
+      </div>
+      <div className='flex justify-center'>
+        <div className="mt-0 mx-2 grid grid-cols-2 gap-3  ">
+          <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-md bg-white p-2 flex justify-center items-center bg-[url('https://img.freepik.com/free-photo/wheat-grains-bowl-wheat-popcorn-bowl-wheat-seed-rustic_114579-1319.jpg?t=st=1713081880~exp=1713085480~hmac=3b2cc3b4dc937ac048008d865e2525c15eb40af96fbdb186cb99a1760851afb7&w=360')]  bg-cover bg-no-repeat" >
+            <div className="backdrop-blur-sm bg-black/20 p-2 rounded-2xl shadow-lg w-fit h-fit text-3xl font-bold text-white ">Seeds</div>
+          </div>
+          <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-md bg-white p-2 flex justify-center items-center bg-[url('https://img.freepik.com/free-photo/wheat-grains-bowl-wheat-popcorn-bowl-wheat-seed-rustic_114579-1319.jpg?t=st=1713081880~exp=1713085480~hmac=3b2cc3b4dc937ac048008d865e2525c15eb40af96fbdb186cb99a1760851afb7&w=360')]  bg-cover bg-no-repeat" >
+            <div className="backdrop-blur-sm bg-black/20 p-2 rounded-2xl shadow-lg w-fit h-fit text-3xl font-bold text-white ">Seeds</div>
+          </div>
+        </div>
+      </div>
+
+<div className='mt-4 mx-4'>
+
+      <Calendar events={events} />
+</div>
+
+
+
     </div>
   )
 }
