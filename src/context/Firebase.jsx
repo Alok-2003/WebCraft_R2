@@ -66,11 +66,40 @@ export const FirebaseProvider = (props) => {
         }
         return null;
     };
+    const AddNewProduct = async (is,name , price, cover) => {
+        const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
+        const uploadResult = await uploadBytes(imageRef, cover);
+        return await addDoc(collection(firestore, "books"), {
+            name,
+            is,
+            price,
+            imageURL: uploadResult.ref.fullPath,
+            userID: user.uid,
+            userEmail: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+        });
+    };
+    const AddNewMachinery = async (is,name , cover) => {
+        const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
+        const uploadResult = await uploadBytes(imageRef, cover);
+        return await addDoc(collection(firestore, "books"), {
+            name,
+            is,
+            imageURL: uploadResult.ref.fullPath,
+            userID: user.uid,
+            userEmail: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+        });
+    };
     
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
         signinWithGoogle,
-        getUserDetails
+        getUserDetails,
+        AddNewProduct,
+        AddNewMachinery
     }} > {props.children} </FirebaseContext.Provider>
 };
