@@ -12,6 +12,11 @@ const Login = () => {
     }
   }, [firebase, navigate]);
 
+  const handleLogin = () => {
+    navigate("/login/phone");
+    // Redirect to login page after logout
+};
+
   return (
     <>
       <div className="font-['gilroy'] flex justify-center items-center h-[100%] bg-[url('https://img.freepik.com/premium-photo/farmer-hold-full-basket-vegetables_1031240-10968.jpg?w=826')] bg-cover">
@@ -33,7 +38,7 @@ const Login = () => {
                 ---- <h1 class="text-black-900 text-2xl text-center">OR</h1> ----
               </div>
 
-              <button className="bg-white text-black border border-gray-300 rounded-md p-2 flex items-center justify-center text-xl my-2">
+              <button onClick={handleLogin} className="bg-white text-black border border-gray-300 rounded-md p-2 flex items-center justify-center text-xl my-2">
                 <div className="flex items-center">
                   <img src="https://firebasestorage.googleapis.com/v0/b/webcraft-b6ba7.appspot.com/o/phone.png?alt=media&token=538329b1-ec5e-4387-a5a7-4d641ca7fee9" alt="Google Logo" className="w-10 h-10 mr-2" />
                   Login in with Phone Number

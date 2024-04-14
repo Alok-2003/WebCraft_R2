@@ -39,8 +39,6 @@ const Navbar = () => {
         </div>
     );
 
-
-
     return (
         <nav className="z-50">
             <div className="font-gilroy h-16 flex justify-between z-50 text-black lg:py-5 px-10 py-4  fixed w-full backdrop-blur-sm bg-white/50">
